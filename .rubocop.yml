@@ -1,0 +1,37 @@
+require: rubocop-rspec
+
+LineLength:
+  Max: 100
+
+Documentation:
+  Enabled: false
+
+FrozenStringLiteralComment:
+  Enabled: false
+
+WordArray:
+  Enabled: false
+
+SymbolArray:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+RSpec/ExampleLength:
+  Max: 10
+
+Style/MutableConstant:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+    - 'config/routes.rb'
+
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/*.rb'
+    - 'config/**/*.rb'
