@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_03_142726) do
+ActiveRecord::Schema.define(version: 2019_02_03_160159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "coffee_shops", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "location_id", null: false
+    t.date "paid_till"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_coffee_shops_on_location_id"
+    t.index ["user_id"], name: "index_coffee_shops_on_user_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "street", null: false
+    t.integer "street_number", null: false
+    t.integer "zip_code", null: false
+    t.string "country", null: false
+    t.string "coordinates", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,4 +53,6 @@ ActiveRecord::Schema.define(version: 2019_02_03_142726) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "coffee_shops", "locations"
+  add_foreign_key "coffee_shops", "users"
 end
