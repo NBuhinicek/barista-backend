@@ -6,8 +6,8 @@ class User < ApplicationRecord
               foreign_key: :role,
               class_name: Role
 
-  validates :first_name, presence: true, uniqueness: true
-  validates :last_name, presence: true, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
 
   def name
