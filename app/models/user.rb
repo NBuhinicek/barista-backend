@@ -2,6 +2,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
 
+  enumeration :role,
+              foreign_key: :role,
+              class_name: Role
+
   validates :first_name, presence: true, uniqueness: true
   validates :last_name, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true

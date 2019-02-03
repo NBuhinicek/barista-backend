@@ -83,6 +83,10 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
+    enumerations (2.3.1)
+      activerecord
+      activesupport
+      i18n
     erubi (1.8.0)
     execjs (2.7.0)
     ffi (1.10.0)
@@ -258,6 +262,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  enumerations
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   overcommit
