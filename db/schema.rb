@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_03_214453) do
+ActiveRecord::Schema.define(version: 2019_02_03_215612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,24 @@ ActiveRecord::Schema.define(version: 2019_02_03_214453) do
   create_table "order_items", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "coffee_shop_id"
+    t.bigint "coffee_tables_id"
+    t.boolean "finished"
+    t.date "finished_at"
+    t.integer "total_price_cents", default: 0, null: false
+    t.string "total_price_currency", default: "HRK", null: false
+    t.integer "discount_price_cents", default: 0, null: false
+    t.string "discount_price_currency", default: "HRK", null: false
+    t.string "payment_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coffee_shop_id"], name: "index_orders_on_coffee_shop_id"
+    t.index ["coffee_tables_id"], name: "index_orders_on_coffee_tables_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
