@@ -1,7 +1,8 @@
 class CoffeeShopItem < ApplicationRecord
-  validates :coffee_shop, presence: true
-  validates :order_item, presence: true
-  validates :price, presence: true
+  validates :name, presence: true
+  validates :item_type, presence: true
 
-  monetize :price_cents
+  enumeration :item_type,
+              foreign_key: :item_type,
+              class_name: ItemType
 end
