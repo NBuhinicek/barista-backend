@@ -1,6 +1,6 @@
 class CoffeeShopItemPrice < ApplicationRecord
-  has_one :coffee_shop, dependent: :nullify
-  has_one :coffee_shop_item, dependent: :nullify
+  belongs_to :coffee_shop
+  belongs_to :coffee_shop_item
 
   validates :coffee_shop, presence: true
   validates :coffee_shop_item, presence: true
