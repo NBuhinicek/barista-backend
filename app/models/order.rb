@@ -6,4 +6,8 @@ class Order < ApplicationRecord
 
   monetize :total_price_cents
   monetize :discount_price_cents
+
+  enumeration :payment_type,
+              foreign_key: :payment_type,
+              class_name: PaymentType
 end
