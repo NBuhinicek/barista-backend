@@ -1,8 +1,11 @@
 class ItemType < Enumerations::Base
-  # value :customer,
-  #       name: 'Custumer'
-  # value :admin,
-  #       name: 'Admin'
-  # value :store_owner,
-  #       name: 'Store owner'
+  # TODO: basic categories stalk coffee shop to find menu
+  value :coffee,
+        name: 'Coffee'
+  value :alcoholic,
+        name: 'Alcoholic beverage'
+  value :nonalcoholic,
+        name: 'Non alcoholic beverage'
+  value :soda,
+        name: 'Soda'
 end
