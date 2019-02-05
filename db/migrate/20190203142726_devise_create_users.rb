@@ -10,6 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :first_name
       t.string :last_name
       t.string :role
+      t.boolean :banned, default: false
 
       ## Recoverable
       t.string   :reset_password_token
