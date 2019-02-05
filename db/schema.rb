@@ -15,17 +15,24 @@ ActiveRecord::Schema.define(version: 2019_02_03_215612) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "coffee_shop_items", force: :cascade do |t|
+  create_table "coffee_shop_item_prices", force: :cascade do |t|
     t.bigint "coffee_shop_id"
-    t.bigint "order_items_id"
+    t.bigint "coffee_shop_item_id"
     t.integer "price_cents", default: 0, null: false
     t.string "price_currency", default: "HRK", null: false
     t.boolean "available", default: true
     t.boolean "special_deal", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["coffee_shop_id"], name: "index_coffee_shop_items_on_coffee_shop_id"
-    t.index ["order_items_id"], name: "index_coffee_shop_items_on_order_items_id"
+    t.index ["coffee_shop_id"], name: "index_coffee_shop_item_prices_on_coffee_shop_id"
+    t.index ["coffee_shop_item_id"], name: "index_coffee_shop_item_prices_on_coffee_shop_item_id"
+  end
+
+  create_table "coffee_shop_items", force: :cascade do |t|
+    t.string "name"
+    t.string "item_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "coffee_shops", force: :cascade do |t|
@@ -40,6 +47,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_215612) do
 
   create_table "coffee_tables", force: :cascade do |t|
     t.bigint "coffee_shop_id"
+    t.integer "table_number"
     t.string "qr_code"
     t.string "qr_code_hash"
     t.datetime "created_at", null: false
@@ -58,10 +66,17 @@ ActiveRecord::Schema.define(version: 2019_02_03_215612) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.string "name"
-    t.string "item_type"
+    t.bigint "user_id"
+    t.bigint "order_id"
+    t.bigint "coffee_shop_item_id"
+    t.integer "quantity"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "HRK", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["coffee_shop_item_id"], name: "index_order_items_on_coffee_shop_item_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["user_id"], name: "index_order_items_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -88,6 +103,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_215612) do
     t.string "first_name"
     t.string "last_name"
     t.string "role"
+    t.boolean "banned", default: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
