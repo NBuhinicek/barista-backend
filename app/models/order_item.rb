@@ -1,8 +1,9 @@
 class OrderItem < ApplicationRecord
-  validates :name, presence: true
-  validates :item_type, presence: true
+  has_one :user, dependent: :nullify
+  has_one :order, dependent: :nullify
+  has_one :coffee_shop_item, dependent: :nullify
 
-  enumeration :item_type,
-              foreign_key: :item_type,
-              class_name: ItemType
+  validates :quantity, presence: true
+
+  monetize :price_cents
 end
