@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 2019_02_03_215612) do
   create_table "coffee_shops", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "location_id", null: false
+    t.string "name"
+    t.integer "number_of_tables"
     t.date "paid_till"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
