@@ -1,0 +1,15 @@
+-if notice
+  p.id="notice" "#{notice}"
+
+h1 Coffee Shops
+
+table
+  tbody
+    - @coffee_tables.each do |coffee_table|
+      tr
+        td= "#{coffee_table.coffee_shop.name} table no. #{coffee_table.table_number}"
+        td
+          img src="#{coffee_table.qr_code}"
+        td= link_to 'Show', coffee_table
+        / td= link_to 'Destroy', coffee_shop, method: :delete, data: { confirm: 'Are you sure?' }
+    end
