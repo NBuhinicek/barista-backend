@@ -1,4 +1,4 @@
-class CoffeeTableGenerator
+class CoffeeTablesGenerator
   def initialize(coffee_shop)
     @coffee_shop = coffee_shop
   end
