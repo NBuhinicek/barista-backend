@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
     create_table :orders do |t|
       t.belongs_to :user
       t.belongs_to :coffee_shop
-      t.belongs_to :coffee_tables
+      t.integer :table_number
       t.boolean :finished
       t.date :finished_at
       t.monetize :total_price

@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2019_02_03_215612) do
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "coffee_shop_id"
-    t.bigint "coffee_tables_id"
+    t.integer "table_number"
     t.boolean "finished"
     t.date "finished_at"
     t.integer "total_price_cents", default: 0, null: false
@@ -95,7 +95,6 @@ ActiveRecord::Schema.define(version: 2019_02_03_215612) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["coffee_shop_id"], name: "index_orders_on_coffee_shop_id"
-    t.index ["coffee_tables_id"], name: "index_orders_on_coffee_tables_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
