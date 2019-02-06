@@ -1,0 +1,9 @@
+-if notice
+  p.id="notice" "#{notice}"
+
+table
+  tbody
+    tr
+      td= "#{coffee_table.coffee_shop.name} table no. #{coffee_table.table_number}"
+      td
+        img src="#{coffee_table.qr_code}"
