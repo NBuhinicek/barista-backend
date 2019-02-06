@@ -22,10 +22,10 @@ class CoffeeTableGenerator
   end
 
   def qr_code_digest
-    Digest::MD5.hexdigest(digest_string)
+    Digest::SHA256.hexdigest(digest_string)
   end
 
   def digest_string
-    "#{@coffee_shop.name}#{@table_number}#{@coffee_shop.id}"
+    "#{@coffee_shop.name}#{@table_number}#{@coffee_shop.id}#{Time.zone.today}"
   end
 end
