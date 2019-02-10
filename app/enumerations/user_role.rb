@@ -1,4 +1,4 @@
-class Role < Enumerations::Base
+class UserRole < Enumerations::Base
   value :customer,
         name: 'Custumer'
   value :admin,

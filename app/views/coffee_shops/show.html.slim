@@ -1,0 +1,25 @@
+-if notice
+  p.id="notice" "#{notice}"
+
+h1 #{@coffee_shop.name}
+
+hr
+
+h3 Owner
+
+p #{@coffee_shop.user.name}
+
+hr
+
+h3 Location
+
+= render @coffee_shop.location
+
+hr
+
+p Number of table: #{@coffee_shop.number_of_tables}
+h3 List of tables
+
+= render @coffee_shop.coffee_tables
+
+- link_to 'Back', coffee_shops_path
