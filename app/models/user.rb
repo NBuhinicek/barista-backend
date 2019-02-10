@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   enumeration :role,
               foreign_key: :role,
-              class_name: Role
+              class_name: UserRole
 
   validates :first_name, presence: true
   validates :last_name, presence: true
