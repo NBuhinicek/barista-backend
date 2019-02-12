@@ -1,9 +1,23 @@
 Rails.application.routes.draw do
+  root to: 'coffee_shops#index'
+
+  namespace :api do
+    namespace :v1 do
+      # devise_scope :user do
+      #   scope module: :auth do
+      #     resource :sessions, only: [:create, :destroy]
+      #   end
+      # end
+
+      resources :locations, only: :index
+
+      resources :qr_codes do
+        get '/find_table/:hash', to: 'qr_codes#find_table', on: :collection
+      end
+    end
+  end
+
   resources :coffee_shops
   resources :coffee_tables
   devise_for :users
-
-  get '/qr_code/:hash', to: 'coffee_tables#qr_code'
-
-  root to: 'coffee_shops#index'
 end

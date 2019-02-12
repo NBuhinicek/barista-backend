@@ -91,6 +91,8 @@ GEM
       i18n
     erubi (1.8.0)
     execjs (2.7.0)
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
     ffi (1.10.0)
     geokit (1.13.1)
     globalid (0.4.2)
@@ -103,6 +105,7 @@ GEM
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    json_api_responders (2.5.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -282,8 +285,10 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   enumerations
+  fast_jsonapi
   geokit
   jbuilder (~> 2.5)
+  json_api_responders
   listen (>= 3.0.5, < 3.2)
   money-rails
   overcommit
