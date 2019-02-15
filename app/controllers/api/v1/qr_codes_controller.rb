@@ -10,7 +10,7 @@ module Api
             include: [:coffee_shop, 'coffee_shop.location']
           ).serialized_json
         else
-          render json: { errors: 'Invalid qr code' }, status: :bad_request
+          head :not_found
         end
       end
     end
