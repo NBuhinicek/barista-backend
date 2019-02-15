@@ -68,6 +68,26 @@ Rails.application.configure do
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # In production, :host should be set to the actual host of your application.
 
+  config.action_mailer.default_url_options = {
+    host: 'barista-web.herokuapp.com',
+    protocol: 'https'
+  }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default charset: 'utf-8'
+
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    domain: 'gmail.com',
+    port: 587,
+    user_name: Rails.application.credentials[:smtp_username],
+    password: Rails.application.credentials[:smtp_password],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
