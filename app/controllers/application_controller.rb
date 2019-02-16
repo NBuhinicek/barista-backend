@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  # before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
   # protect_from_forgery
   # include Pundit
@@ -7,15 +7,15 @@ class ApplicationController < ActionController::Base
 
   # protected
 
-  # def configure_permitted_parameters
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: keys)
-  # end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: keys)
+  end
 
-  # private
+  private
 
-  # def keys
-  #   [:email, :first_name, :last_name]
-  # end
+  def keys
+    [:email, :first_name, :last_name, :password, :role]
+  end
 
   # def user_not_authorized
   #   flash[:alert] = 'You are not authorized to perform this action.'

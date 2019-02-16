@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_secure_token
+
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
 
