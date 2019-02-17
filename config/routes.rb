@@ -21,5 +21,9 @@ Rails.application.routes.draw do
 
   resources :coffee_shops
   resources :coffee_tables
-  devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }
+  devise_for :users, controllers: {
+    registrations: 'registrations',
+    sessions: 'sessions',
+    confirmations: 'confirmations'
+  }
 end
