@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       #   end
       # end
       resource :session, only: [:create, :destroy]
-      resources :users, except: [:new, :edit]
+      resources :users, except: [:new, :edit] do
+        get '/check_email', to: 'users#check_email', on: :collection
+      end
       resources :locations, only: :index
       resources :qr_codes do
         get '/find_table/:hash', to: 'qr_codes#find_table', on: :collection
@@ -19,5 +21,5 @@ Rails.application.routes.draw do
 
   resources :coffee_shops
   resources :coffee_tables
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }
 end
