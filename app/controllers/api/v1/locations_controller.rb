@@ -4,7 +4,7 @@ module Api
       skip_before_action :authenticate
 
       def index
-        render json: LocationSerializer.new(Location.all, include: [:coffee_shop]).serialized_json
+        render json: LocationSerializer.new(Location.all).serialized_json
       end
     end
   end
