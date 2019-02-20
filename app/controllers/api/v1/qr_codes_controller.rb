@@ -1,8 +1,6 @@
 module Api
   module V1
     class QrCodesController < ApiController
-      skip_before_action :authenticate
-
       def find_table
         coffee_table = CoffeeTable.find_by(qr_code_hash: params[:hash])
 
