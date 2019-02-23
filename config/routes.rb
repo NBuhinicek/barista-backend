@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :users, except: [:new, :edit] do
         get '/check_email', to: 'users#check_email', on: :collection
         post '/resend_confirmation', to: 'users#resend_confirmation', on: :collection
+        post '/reset_password', to: 'users#reset_password', on: :collection
       end
       resources :locations, only: :index
       resources :qr_codes do
