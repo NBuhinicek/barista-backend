@@ -1,7 +1,10 @@
 module Api
   module V1
     class UsersController < ApiController
-      skip_before_action :authenticate, only: [:create, :check_email, :resend_confirmation]
+      # TODO prebaci u except ili makni skroz jer svugdje skipamo
+      skip_before_action :authenticate, only: [
+        :create, :check_email, :resend_confirmation, :reset_password
+      ]
 
       # def index
       #   render json: User.query(params['query'])
@@ -60,6 +63,17 @@ module Api
 
         if user
           user.send_confirmation_instructions
+          head :ok
+        else
+          head :bad_request
+        end
+      end
+
+      def reset_password
+        user = User.find_by(email: params[:email])
+
+        if user
+          user.send_reset_password_instructions
           head :ok
         else
           head :bad_request
