@@ -2,7 +2,7 @@ class LocationSerializer < BaseSerializer
   attributes :coordinates
 
   attribute :address do |object|
-    "#{object.street} #{object.street_number}, #{object.county}"
+    object.location_address
   end
 
   attribute :coffee_shop_name do |object|

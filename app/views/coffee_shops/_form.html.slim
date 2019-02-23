@@ -13,12 +13,11 @@
     h3 Coffee Shop location
     hr
 
-    = f.simple_fields_for :location do |lf|
-      = lf.input :street
-      = lf.input :street_number
-      = lf.input :zip_code
-      = lf.input :county
-      = lf.input :country
+    = f.simple_fields_for :location do |location_form|
+      = location_form.input :street
+      = location_form.input :zip_code
+      = location_form.input :county
+      = location_form.input :country
 
     br
     hr

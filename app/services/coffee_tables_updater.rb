@@ -12,7 +12,7 @@ class CoffeeTablesUpdater
   private
 
   def update_tables
-    CoffeeShop.first.coffee_tables.each(&:delete)
+    @coffee_shop.coffee_tables.each(&:delete)
     CoffeeTablesGenerator.new(@coffee_shop).call
   end
 

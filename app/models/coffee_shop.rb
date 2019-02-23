@@ -10,6 +10,8 @@ class CoffeeShop < ApplicationRecord
 
   validate :owner_must_have_store_owner_role
 
+  scope :approved, -> { where(approved: true) }
+
   # TODO: will need better methods for validity
   def useable?
     Time.current < paid_till
