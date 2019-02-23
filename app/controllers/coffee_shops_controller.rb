@@ -4,7 +4,7 @@ class CoffeeShopsController < ApplicationController
   # GET /coffee_shops
   # GET /coffee_shops.json
   def index
-    @coffee_shops = CoffeeShop.all
+    @coffee_shops = CoffeeShop.all.approved
   end
 
   # GET /coffee_shops/1
@@ -14,6 +14,7 @@ class CoffeeShopsController < ApplicationController
   # GET /coffee_shops/new
   def new
     @coffee_shop = CoffeeShop.new
+    @coffee_shop.build_location
   end
 
   # GET /coffee_shops/1/edit
@@ -23,29 +24,26 @@ class CoffeeShopsController < ApplicationController
   # POST /coffee_shops.json
   def create
     @coffee_shop = CoffeeShop.new(coffee_shop_params)
+    @location = @coffee_shop.location
 
-    respond_to do |format|
-      if @coffee_shop.save
-        format.html { redirect_to @coffee_shop, notice: 'Coffee shop was successfully created.' }
-        format.json { render :show, status: :created, location: @coffee_shop }
-      else
-        format.html { render :new }
-        format.json { render json: @coffee_shop.errors, status: :unprocessable_entity }
-      end
+    if @coffee_shop.save
+      create_tables
+      set_coordinates
+      redirect_to @coffee_shop, notice: 'Coffee shop was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /coffee_shops/1
   # PATCH/PUT /coffee_shops/1.json
   def update
-    respond_to do |format|
-      if @coffee_shop.update(coffee_shop_params)
-        format.html { redirect_to @coffee_shop, notice: 'Coffee shop was successfully updated.' }
-        format.json { render :show, status: :ok, location: @coffee_shop }
-      else
-        format.html { render :edit }
-        format.json { render json: @coffee_shop.errors, status: :unprocessable_entity }
-      end
+    if @coffee_shop.update(coffee_shop_params)
+      update_tables
+      set_coordinates
+      redirect_to @coffee_shop, notice: 'Coffee shop was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -53,21 +51,35 @@ class CoffeeShopsController < ApplicationController
   # DELETE /coffee_shops/1.json
   def destroy
     @coffee_shop.destroy
-    respond_to do |format|
-      format.html { redirect_to coffee_shops_url, notice: 'Coffee shop was destroyed.' }
-      format.json { head :no_content }
-    end
+    @location.destroy
+
+    redirect_to coffee_shops_url, notice: 'Coffee shop was destroyed.'
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_coffee_shop
     @coffee_shop = CoffeeShop.find(params[:id])
+    @location = @coffee_shop.location
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def coffee_shop_params
-    params.fetch(:coffee_shop, {})
+    params.require(:coffee_shop).permit(
+      :name, :number_of_tables,
+      location_attributes: [:id, :street, :zip_code, :county, :country]
+    ).merge(user: current_user)
+  end
+
+  # TODO: moglo bi se tu bolje napravit da je update i generator jedan service
+  def create_tables
+    CoffeeTablesGenerator.new(@coffee_shop).call
+  end
+
+  def update_tables
+    CoffeeTablesUpdater.new(@coffee_shop).call
+  end
+
+  def set_coordinates
+    @location.update(coordinates: CoordinatesFinder.new(@location).call)
   end
 end
