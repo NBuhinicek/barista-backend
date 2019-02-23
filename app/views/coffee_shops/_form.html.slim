@@ -6,8 +6,15 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :name, required: true
-    = f.input :number_of_tables, required: true
+    = f.input :name
+    = f.input :number_of_tables
+
+    hr
+    h3 Coffee shop profile picture
+
+    = f.input :image, label: 'Upload an image of your coffee shop', as: :file
+    / = if @coffee_shop.image_data?
+    /   = f.input :remove_image, as: :check_boxes, label: 'Remove uploaded image', html: { class: 'check-boxes-inline' }
 
     hr
     h3 Coffee Shop location

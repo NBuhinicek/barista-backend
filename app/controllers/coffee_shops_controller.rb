@@ -65,7 +65,7 @@ class CoffeeShopsController < ApplicationController
 
   def coffee_shop_params
     params.require(:coffee_shop).permit(
-      :name, :number_of_tables,
+      :name, :number_of_tables, :image,
       location_attributes: [:id, :street, :zip_code, :county, :country]
     ).merge(user: current_user)
   end

@@ -3,6 +3,7 @@ ruby '2.5.1'
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'aws-sdk-s3', '~> 1.2'
 gem 'barby'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'coffee-rails', '~> 4.2'
@@ -20,6 +21,7 @@ gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.2'
 gem 'rqrcode'
 gem 'sass-rails', '~> 5.0'
+gem 'shrine'
 gem 'simple_form'
 gem 'slim'
 gem 'turbolinks', '~> 5'

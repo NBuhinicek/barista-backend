@@ -1,10 +1,13 @@
 class CoffeeShop < ApplicationRecord
+  include ImageUploader::Attachment.new(:image)
+
   belongs_to :user
   belongs_to :location
   has_many :coffee_tables, dependent: :destroy
 
   accepts_nested_attributes_for :location
 
+  validates :name, presence: true
   validates :number_of_tables, presence: true,
                                numericality: { only_integer: true }
 

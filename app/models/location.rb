@@ -4,6 +4,7 @@ class Location < ApplicationRecord
   validates :street, presence: true
   validates :zip_code, presence: true,
                        numericality: { only_integer: true }
+  validates :county, presence: true
   validates :country, presence: true
 
   def location_address
