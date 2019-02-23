@@ -4,7 +4,8 @@ class CoffeeShopsController < ApplicationController
   # GET /coffee_shops
   # GET /coffee_shops.json
   def index
-    @coffee_shops = CoffeeShop.all.approved
+    # @coffee_shops = CoffeeShop.all.approved
+    @coffee_shops = CoffeeShop.all
   end
 
   # GET /coffee_shops/1
