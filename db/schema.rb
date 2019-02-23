@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_14_02_133208) do
+ActiveRecord::Schema.define(version: 2019_23_02_193208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2019_14_02_133208) do
     t.date "paid_till"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "approved", default: false
+    t.string "image_data"
     t.index ["location_id"], name: "index_coffee_shops_on_location_id"
     t.index ["user_id"], name: "index_coffee_shops_on_user_id"
   end
@@ -59,11 +61,10 @@ ActiveRecord::Schema.define(version: 2019_14_02_133208) do
 
   create_table "locations", force: :cascade do |t|
     t.string "street", null: false
-    t.integer "street_number", null: false
     t.integer "zip_code", null: false
     t.string "county", null: false
     t.string "country", null: false
-    t.string "coordinates", null: false
+    t.string "coordinates"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

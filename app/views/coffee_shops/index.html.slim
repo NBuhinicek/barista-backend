@@ -7,9 +7,9 @@ table
         td= coffee_shop.name
         td= link_to 'Show', coffee_shop
         td= link_to 'Edit', edit_coffee_shop_path(coffee_shop)
-        / td= link_to 'Destroy', coffee_shop, method: :delete, data: { confirm: 'Are you sure?' }
+        td= link_to 'Destroy', coffee_shop, method: :delete, data: { confirm: 'Are you sure?' }
     end
 
 br
 
-- link_to 'New Coffee Shop', new_coffee_shop_path
+= link_to 'New Coffee Shop', new_coffee_shop_path

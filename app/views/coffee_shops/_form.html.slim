@@ -1,0 +1,34 @@
+= simple_form_for @coffee_shop do |f|
+
+  hr
+
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :name
+    = f.input :number_of_tables
+
+    hr
+    h3 Coffee shop profile picture
+
+    = f.input :image, label: 'Upload an image of your coffee shop', as: :file
+    / = if @coffee_shop.image_data?
+    /   = f.input :remove_image, as: :check_boxes, label: 'Remove uploaded image', html: { class: 'check-boxes-inline' }
+
+    hr
+    h3 Coffee Shop location
+    hr
+
+    = f.simple_fields_for :location do |location_form|
+      = location_form.input :street
+      = location_form.input :zip_code
+      = location_form.input :county
+      = location_form.input :country
+
+    br
+    hr
+    br
+
+  .form-actions
+    = f.button :submit

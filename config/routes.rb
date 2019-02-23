@@ -3,11 +3,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      # devise_scope :user do
-      #   scope module: :auth do
-      #     resource :sessions, only: [:create, :destroy]
-      #   end
-      # end
       resource :session, only: [:create, :destroy]
       resources :users, except: [:new, :edit] do
         get '/check_email', to: 'users#check_email', on: :collection

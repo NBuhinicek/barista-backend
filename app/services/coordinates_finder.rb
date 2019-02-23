@@ -1,8 +1,6 @@
 class CoordinatesFinder
-  def initialize(street, street_number, zip_code)
-    @street = street
-    @street_number = street_number
-    @zip_code = zip_code
+  def initialize(location)
+    @location = location
   end
 
   def call
@@ -12,10 +10,6 @@ class CoordinatesFinder
   private
 
   def coordinates
-    Geokit::Geocoders::GoogleGeocoder.geocode(location_address)
-  end
-
-  def location_address
-    "#{@street} #{@street_number}, #{@zip_code}"
+    Geokit::Geocoders::GoogleGeocoder.geocode(@location.location_address)
   end
 end
