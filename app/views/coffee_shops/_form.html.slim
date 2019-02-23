@@ -7,12 +7,12 @@
 
   .form-inputs
     = f.input :name, required: true
-    = f.input :number_of_tables, required: true, as: :integer
+    = f.input :number_of_tables, required: true
 
     hr
     h3 Coffee Shop location
     hr
-    
+
     = f.simple_fields_for :location do |lf|
       = lf.input :street
       = lf.input :street_number
