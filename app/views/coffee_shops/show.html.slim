@@ -1,6 +1,7 @@
 h1 #{@coffee_shop.name}
 
-img src="#{@coffee_shop.image.url}"
+- if @coffee_shop.image
+  img src="#{@coffee_shop.image.url}"
 
 hr
 
