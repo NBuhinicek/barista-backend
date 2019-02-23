@@ -3,6 +3,8 @@ class CoffeeShop < ApplicationRecord
   belongs_to :location
   has_many :coffee_tables, dependent: :destroy
 
+  accepts_nested_attributes_for :location
+
   validates :number_of_tables, presence: true,
                                numericality: { only_integer: true }
 
@@ -14,6 +16,10 @@ class CoffeeShop < ApplicationRecord
   end
 
   private
+
+  def create_tables
+    CoffeeTablesGenerator.new(self).call
+  end
 
   def owner_must_have_store_owner_role
     errors.add(:user, 'must be a store owner') unless user.role.store_owner?
