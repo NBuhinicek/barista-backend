@@ -1,10 +1,11 @@
 module Api
   module V1
     class LocationsController < ApiController
-      skip_before_action :authenticate
-
       def index
-        render json: LocationSerializer.new(Location.all).serialized_json
+        render json: LocationSerializer.new(
+          Location.all,
+          params: { current_location: params[:location] }
+        ).serialized_json
       end
     end
   end
