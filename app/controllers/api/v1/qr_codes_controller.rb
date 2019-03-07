@@ -7,7 +7,7 @@ module Api
         if coffee_table
           render json: CoffeeTableSerializer.new(
             coffee_table,
-            include: [:coffee_shop, 'coffee_shop.location']
+            include: [:coffee_shop]
           ).serialized_json
         else
           head :not_found
